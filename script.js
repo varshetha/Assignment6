@@ -1,26 +1,25 @@
-// URL of the Dog Facts API
-const apiUrl = 'https://dog-facts-api.herokuapp.com/api/v1/resources/dogs/all';
+document
+  .getElementById("newCatButton")
+  .addEventListener("click", loadRandomCat);
 
-// Elements
-const factContainer = document.getElementById('fact');
-const newFactButton = document.getElementById('new-fact-btn');
-
-// Function to get a new fact from the API
-async function getNewDogFact() {
-    try {
-        const response = await fetch(apiUrl);
-        const data = await response.json();
-        
-        // Display the fact from the API response. The Dog Facts API returns facts as an array.
-        factContainer.textContent = data.facts[0];
-    } catch (error) {
-        factContainer.textContent = 'Oops! Something went wrong. Please try again later.';
-        console.error('Error fetching the dog fact:', error);
-    }
+function loadRandomCat() {
+  fetch("https://api.thecatapi.com/v1/images/search")
+    .then((response) => response.json())
+    .then((data) => {
+      const catImageContainer = document.getElementById("catImageContainer");
+      if (data.length > 0 && data[0].url) {
+        catImageContainer.innerHTML = `<img src="${data[0].url}" alt="A random cat">`;
+      } else {
+        catImageContainer.innerHTML = "<p>No cats found :(</p>";
+      }
+    })
+    .catch((error) => {
+      console.error("Error fetching data:", error);
+      const catImageContainer = document.getElementById("catImageContainer");
+      catImageContainer.innerHTML =
+        "<p>Error loading cat picture. Try again later.</p>";
+    });
 }
 
-// Event listener for the "Get New Dog Fact" button
-newFactButton.addEventListener('click', getNewDogFact);
-
-// Load a fact when the page loads
-window.addEventListener('load', getNewDogFact);
+// Initially load a random cat image
+loadRandomCat();
