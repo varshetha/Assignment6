@@ -3,7 +3,7 @@ document
   .addEventListener("click", loadRandomCat);
 
 function loadRandomCat() {
-  fetch("https://dog.ceo/api/breeds/image/random")
+  fetch("//https://dog.ceo/api/breeds/image/random")
   //https://api.thecatapi.com/v1/images/search
     .then((response) => response.json())
     .then((data) => {
