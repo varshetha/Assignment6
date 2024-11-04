@@ -1,5 +1,5 @@
 // URL of the Dog Facts API
-const apiUrl = 'https://cors-anywhere.herokuapp.com/http://dog-api.kinduff.com/api/facts';
+const apiUrl = 'https://dog-facts-api.herokuapp.com/api/v1/resources/dogs/all';
 
 // Elements
 const factContainer = document.getElementById('fact');
